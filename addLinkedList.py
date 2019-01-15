@@ -12,36 +12,30 @@ class Solution:
         :type l2: ListNode
         :rtype: ListNode
         """
-        head = l1
-        addhead = l2
-        curr = head
-        add = addhead
-        l1num = 0
-        l2num = 0
-        while (add != None):
-            l2num = l2num + 1
-            if (curr == None):
-                break;
-            l1num = l1num + 1
-            curr = curr.next
-            add = add.next
-        if (l1num < l2num):
-            head = l2
-            addhead = l1
-        curr = head
-        add = addhead
-        while (curr != None):
-            if (add != None):
-                curr.val = curr.val + add.val
-                add = add.next
-            if (curr.val >= 10):
-                curr.val = curr.val%10
-                if (curr.next == None):
-                    node = ListNode(1)
-                    curr.next = node
-                else:
-                    curr.next.val = curr.next.val + 1
-            curr = curr.next
+        result = ListNode(0)
+        head = result
+        while(l1 or l2):
+            if(l1 and l2):
+                result.val=result.val + l1.val+l2.val
+                l1=l1.next
+                l2=l2.next
+            elif(l1 and not l2):
+                result.val=result.val + l1.val
+                l1=l1.next
+            elif(not l1 and  l2):
+                result.val=result.val + l2.val
+                l2=l2.next
+            if(result.val>=10):
+                result.val=result.val%10
+                node= ListNode(1)
+                result.next=node
+                result=result.next
+            elif(result.val<10):
+                if(l1 or l2):
+                    node = ListNode(0)
+                    result.next=node
+                    result=result.next
+                    
         return head
 
 
