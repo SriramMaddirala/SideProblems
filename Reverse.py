@@ -34,7 +34,6 @@ class Solution:
             if (current == None):
                 head.next = prev
                 if(not start):
-                    prev=head
                     begin.next = head
                     return realhead
                 break;
